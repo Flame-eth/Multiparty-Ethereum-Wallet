@@ -20,7 +20,7 @@ contract Wallet {
 
     address private administrator;              //These is the administrator of the contract
     address[] public owners;                    //An array of all owners 
-    mapping(address => bool) public isOwner;    //A mapping to verify the status of an address as an owner
+    mapping(address => bool) private isOwner;    //A mapping to verify the status of an address as an owner
     uint private requiredApprovals;             // Number of required approvals for a transaction to be executed
     uint private requiredApprovalPercentage;    // Percentage of required approvals set by administrator
     address private transactionProposer;        // This stores the address of the last owner to propose a transaction
@@ -264,10 +264,10 @@ contract Wallet {
 
     // Function used to set the required number of apporvals
     // Function can only be called by the contract administrator
-    function setReuiredApproval (uint _requiredApprovalPercentage) private onlyAdministrator {
+    function setReuiredApproval (uint56 _requiredApprovalPercentage) private onlyAdministrator {
+        require(_requiredApprovalPercentage <= 100, "Input value has to be between 1-100");
         requiredApprovalPercentage = _requiredApprovalPercentage;
         TotalOwners();
         requiredApprovals = ((requiredApprovalPercentage * totalOwners) / 100);
     }
 }
-
