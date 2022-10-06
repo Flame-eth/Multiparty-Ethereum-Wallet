@@ -244,8 +244,6 @@ contract Wallet {
           owners.push(_newOwner);
           TotalOwners();
           requiredApprovals = ((requiredApprovalPercentage * totalOwners) / 100);
-
-
     }
 
     // Function to remove a owner from the array of owners
