@@ -18,9 +18,9 @@ contract Wallet {
     event RevokeConfirmation(address indexed owner, uint indexed txIndex);
     event ExecuteTransaction(address indexed owner, uint indexed txIndex);
 
-    address private administrator;              //These is the administrator of the contract
+    address private administrator;              //This is the administrator of the contract
     address[] public owners;                    //An array of all owners 
-    mapping(address => bool) private isOwner;    //A mapping to verify the status of an address as an owner
+    mapping(address => bool) private isOwner;    //A mapping to verify the status of an address as a valid owner
     uint private requiredApprovals;             // Number of required approvals for a transaction to be executed
     uint private requiredApprovalPercentage;    // Percentage of required approvals set by administrator
     address private transactionProposer;        // This stores the address of the last owner to propose a transaction
